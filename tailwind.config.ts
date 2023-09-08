@@ -22,7 +22,8 @@ const config: Config = {
                 customSize: "calc(1.5 * var(--size)) var(--size)",
             },
 			boxShadow: {
-				customA: "inset 17px 17px 34px var(--colour-005), inset -17px -17px 34px var(--colour-006)"
+				customA: "inset 17px 17px 34px var(--colour-005), inset -17px -17px 34px var(--colour-006)",
+				customB: "2px 2px 4px var(--colour-005), -2px -2px 4px var(--colour-006)"
 			},
 			borderRadius: {
 				customA: "20px"
