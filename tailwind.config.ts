@@ -27,6 +27,9 @@ const config: Config = {
 			},
 			borderRadius: {
 				customA: "20px"
+			},
+			fontFamily: {
+				header: ['Teko', 'sans-serif'],
 			}
         },
     },

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;500;700&family=Teko:wght@700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,6 +12,7 @@
 	--colour-005: #1f2232;
 	--colour-006: #495074;
 	--colour-007: #343953;
+	--colour-008: #ac9a9f;
 
 	--size: 84px;
 	--degrees: from -30deg at;
