@@ -15,8 +15,8 @@ class TVFrame extends Component<TVFrameProps> {
 
     render(): ReactNode {
         return (
-            <div className="box-border relative flex flex-col justify-center items-center h-[90%] w-[95%] md:h-[70%] lg:h-[90%] 
-            lg:w-[55%] bg-customColor shadow-customA rounded-customA p-12 overflow-hidden">
+            <div className="box-border flex flex-col justify-center items-center h-[90%] w-[95%] md:h-[70%] lg:h-[90%] 
+            lg:w-[55%] bg-customColor shadow-customA rounded-customA p-12 pb-4 overflow-hidden">
                 <div className="box-border flex justify-between items-center h-full w-full rounded-customA shadow-customB 
                 bg-[var(--colour-002)] overflow-hidden">
                     {this.props.children}
