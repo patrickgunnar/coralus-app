@@ -3,7 +3,7 @@
 import { Component, ReactNode } from "react";
 import History from "../history/History";
 import CalculatorFrame from "../calculator/CalculatorFrame";
-import TVFrame from "../tv/TVFrame";
+import FrameWrapper from "../frame/FrameWrapper";
 
 
 class Table extends Component {
@@ -13,10 +13,10 @@ class Table extends Component {
 
     render(): ReactNode {
         return (
-            <TVFrame>
+            <FrameWrapper>
                 <History />
                 <CalculatorFrame />
-            </TVFrame>
+            </FrameWrapper>
         )
     }
 }
