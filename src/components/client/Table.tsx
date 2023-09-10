@@ -2,8 +2,8 @@
 
 import { Component, ReactNode } from "react";
 import History from "../history/History";
-import CalculatorFrame from "../calculator/CalculatorFrame";
 import FrameWrapper from "../frame/FrameWrapper";
+import CalculatorWrapper from "../calculator/Calculator";
 
 
 class Table extends Component {
@@ -15,7 +15,7 @@ class Table extends Component {
         return (
             <FrameWrapper>
                 <History />
-                <CalculatorFrame />
+                <CalculatorWrapper />
             </FrameWrapper>
         )
     }
