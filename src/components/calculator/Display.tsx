@@ -17,13 +17,12 @@ class Display extends Component<DisplayProps> {
     }
 
     render(): ReactNode {
-        const { expression } = this.props;
+        const { expression, expString } = this.props;
 
         return (
-            <div
-                className="box-border flex flex-wrap gap-0 justify-end items-center h-[20%] w-full rounded-customA 
-            bg-customColor shadow-customH p-7 text-[1rem] md:text-[1.1rem] xl:text-[1.5rem] overflow-hidden"
-            >
+            <div className={`box-border flex flex-wrap gap-0 justify-end items-center h-[20%] w-full rounded-customA 
+            bg-customColor shadow-customH p-7 text-[1rem] md:text-[1.1rem] xl:text-[1.5rem] overflow-hidden 
+            ${expString === "INVALID" ? "text-red-600" : "text-white"}`}>
                 {expression.map((Icon, index) => {
                     if (Icon === PiDotLight) {
                         return <PiDotLight key={index} className="mt-4" />;
