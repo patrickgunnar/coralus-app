@@ -8,7 +8,7 @@ interface TVFrameProps {
     children: ReactNode
 }
 
-class TVFrame extends Component<TVFrameProps> {
+class FrameWrapper extends Component<TVFrameProps> {
     constructor(props: any) {
         super(props);
     }
@@ -16,7 +16,7 @@ class TVFrame extends Component<TVFrameProps> {
     render(): ReactNode {
         return (
             <div className="box-border flex flex-col justify-center items-center h-[90%] w-[95%] md:h-[70%] lg:h-[90%] 
-            lg:w-[60%] bg-customColor shadow-customA rounded-customA p-4 md:p-12 pb-4 md:pb-2 overflow-hidden">
+            lg:w-[60%] bg-customColor shadow-customA rounded-customA p-4 pb-4 md:pb-2 overflow-hidden">
                 <div className="box-border flex justify-between items-center h-full w-full rounded-customA shadow-customB 
                 bg-[var(--colour-002)] overflow-hidden">
                     {this.props.children}
@@ -27,4 +27,4 @@ class TVFrame extends Component<TVFrameProps> {
     }
 }
 
-export default TVFrame
+export default FrameWrapper
