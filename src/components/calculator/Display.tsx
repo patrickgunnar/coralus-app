@@ -39,6 +39,9 @@ class Display extends Component<DisplayProps> {
 
                     return <Icon key={index} />;
                 })}
+                {
+                    expression.length === 0 && "0"
+                }
             </div>
         );
     }
