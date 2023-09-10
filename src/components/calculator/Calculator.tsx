@@ -6,10 +6,24 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { PiCaretUpBold, PiDotLight } from "react-icons/pi";
 import { BsExclamationLg } from "react-icons/bs";
 import {
-    TbSquareRoot, TbMathPi, TbParentheses, TbPercentage,
-    TbDivide, TbMinus, TbPlus, TbEqual, TbNumber0,
-    TbNumber1, TbNumber2, TbNumber3, TbNumber4, TbNumber5,
-    TbNumber6, TbNumber7, TbNumber8, TbNumber9,
+    TbSquareRoot,
+    TbMathPi,
+    TbParentheses,
+    TbPercentage,
+    TbDivide,
+    TbMinus,
+    TbPlus,
+    TbEqual,
+    TbNumber0,
+    TbNumber1,
+    TbNumber2,
+    TbNumber3,
+    TbNumber4,
+    TbNumber5,
+    TbNumber6,
+    TbNumber7,
+    TbNumber8,
+    TbNumber9,
 } from "react-icons/tb";
 import DisplayWrapper from "./Display";
 import useExpression from "@/hooks/useExpression";
@@ -17,7 +31,7 @@ import { IconType } from "react-icons";
 import CloseParenthesisIcon from "../icons/CloseParenthesisIcon";
 import OpenParenthesisIcon from "../icons/OpenParenthesisIcon";
 import CalculatorOpt from "./CalculatorOpt";
-
+import Mexp from "math-expression-evaluator";
 
 interface CalculatorProps {
     expression: IconType[];
@@ -76,7 +90,7 @@ const KeyMappings: Record<string, { option: string; value: IconType | null }> =
         "0": { option: "0", value: TbNumber0 },
         ".": { option: ".", value: PiDotLight },
         Backspace: { option: "del", value: IoIosBackspace },
-        "=": { option: "=", value: TbEqual },
+        Enter: { option: "=", value: TbEqual },
         Delete: { option: "AC", value: null },
     };
 
@@ -109,7 +123,51 @@ class Calculator extends Component<CalculatorProps> {
                 );
             }
         } else if (option === "=") {
-            // result
+            const mexp = new Mexp();
+            let evalStr: string = expString;
+
+            if (evalStr.includes("$")) {
+                evalStr = evalStr.replace(/\$/g, `${Math.PI}`);
+            }
+
+            if (evalStr.includes("&")) {
+                // Define a regex pattern to split the string into valid parts
+                const regexPattern = /([+\-*/%().])|([0-9]+\.[0-9]+)|([0-9]+)|(&[0-9]+)/g;
+                // Split the input string using the regex pattern and remove empty elements
+                const tempEval = evalStr.split(regexPattern).filter(Boolean);
+
+                // Map through the temporary array and process each item
+                evalStr = tempEval.map((item, index) => {
+                    if (item.includes("&")) {
+                        // Extract the number after the "&" symbol
+                        const numberToSqrt = parseFloat(item.replace("&", ""));
+
+                        // Check if the previous item is a number
+                        if (!isNaN(parseFloat(tempEval[index - 1]))) {
+                            // If yes, add a multiplication operator before the square root
+                            return `*${Math.sqrt(numberToSqrt)}`;
+                        }
+
+                        // Otherwise, just compute the square root
+                        return `${Math.sqrt(numberToSqrt)}`;
+                    }
+
+                    // If it's not a square root operation, return the item as is
+                    return item;
+                }).join("");
+            }
+
+            try {
+                const result = `${mexp.eval(evalStr, [], {})}`
+                const toSaveExpression = expString
+                const iconsArray = result.split("").map(item => KeyMappings[item].value) as  IconType[];
+                
+                this.updateExpressionAndString(
+                    iconsArray, result
+                )
+            } catch (error) {
+                
+            }
         } else if (option === "#") {
             if (expString.length > 20) return;
 
@@ -210,7 +268,8 @@ class Calculator extends Component<CalculatorProps> {
 }
 
 const CalculatorWrapper = () => {
-    const { expression, setExpression, expString, setExpString } = useExpression();
+    const { expression, setExpression, expString, setExpString } =
+        useExpression();
 
     return (
         <Calculator
