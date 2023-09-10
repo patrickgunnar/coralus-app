@@ -151,7 +151,6 @@ class Calculator extends Component<CalculatorProps> {
     }
 
     onKeyPressHandler = (event: KeyboardEvent) => {
-        console.log("AQ");
         const key = event.key;
         const mapping = KeyMappings[key];
 
