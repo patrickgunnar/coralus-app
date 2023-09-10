@@ -119,23 +119,27 @@ class Calculator extends Component<CalculatorProps> {
     handleExpression(option: string, value: IconType | null) {
         const { expression, expString } = this.props;
 
-        if (expString === "INVALID") {
-            expression.length = 0; // Clear the expression array
-            expString.replace("INVALID", ""); // Remove "INVALID" from expString
+        // get states values
+        let expressionLocal = expression;
+        let localExpString = expString;
+
+        if (localExpString === "INVALID") {
+            expressionLocal.length = 0; // Clear the expression array
+            localExpString = ""; // Remove "INVALID" from expString
         }
 
         if (option === "AC") {
             this.updateExpressionAndString([], "");
         } else if (option === "del") {
-            if (expression.length > 0 && expString.length > 0) {
+            if (expressionLocal.length > 0 && localExpString.length > 0) {
                 this.updateExpressionAndString(
-                    expression.slice(0, -1),
-                    expString.slice(0, -1)
+                    expressionLocal.slice(0, -1),
+                    localExpString.slice(0, -1)
                 );
             }
         } else if (option === "=") {
             const mexp = new Mexp();
-            let evalStr: string = expString;
+            let evalStr: string = localExpString;
 
             if (evalStr.includes("$")) {
                 evalStr = evalStr.replace(/\$/g, `${Math.PI}`);
@@ -175,7 +179,7 @@ class Calculator extends Component<CalculatorProps> {
 
             try {
                 const result = `${mexp.eval(evalStr, [], {})}`;
-                const toSaveExpression = expString;
+                const toSaveExpression = localExpString;
                 const iconsArray = result
                     .split("")
                     .map((item) => KeyMappings[item].value) as IconType[];
@@ -196,20 +200,20 @@ class Calculator extends Component<CalculatorProps> {
                 );
             }
         } else if (option === "#") {
-            if (expString.length > 20) return;
+            if (localExpString.length > 20) return;
 
             // get the number of "(" or ")" parenthesis is in the expression
-            const openLength = expString
+            const openLength = localExpString
                 .split("")
                 .filter((item) => item.trim() === "(").length;
-            const closeLength = expString
+            const closeLength = localExpString
                 .split("")
                 .filter((item) => item.trim() === ")").length;
 
             // get the remaining value
             const remainParenthesis = openLength - closeLength;
             // check if the last value is a number or if it's closing parenthesis
-            const lastChar = expString.charAt(expString.length - 1);
+            const lastChar = localExpString.charAt(localExpString.length - 1);
             const isNumberOrClose =
                 !isNaN(parseInt(lastChar, 10)) || lastChar === ")";
 
@@ -222,15 +226,15 @@ class Calculator extends Component<CalculatorProps> {
             const strParenthesis = isCloseOrOpen ? ")" : "(";
 
             this.updateExpressionAndString(
-                [...expression, currentParenthesis],
-                expString + strParenthesis
+                [...expressionLocal, currentParenthesis],
+                localExpString + strParenthesis
             );
         } else {
-            if (expString.length > 20 || !value) return;
+            if (localExpString.length > 20 || !value) return;
 
             this.updateExpressionAndString(
-                [...expression, value],
-                expString + option
+                [...expressionLocal, value],
+                localExpString + option
             );
         }
     }
