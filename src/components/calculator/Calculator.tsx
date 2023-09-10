@@ -29,7 +29,7 @@ import {
     TbLetterV,
     TbLetterA,
     TbLetterL,
-    TbLetterD
+    TbLetterD,
 } from "react-icons/tb";
 import DisplayWrapper from "./Display";
 import useExpression from "@/hooks/useExpression";
@@ -118,6 +118,11 @@ class Calculator extends Component<CalculatorProps> {
 
     handleExpression(option: string, value: IconType | null) {
         const { expression, expString } = this.props;
+
+        if (expString === "INVALID") {
+            expression.length = 0; // Clear the expression array
+            expString.replace("INVALID", ""); // Remove "INVALID" from expString
+        }
 
         if (option === "AC") {
             this.updateExpressionAndString([], "");
