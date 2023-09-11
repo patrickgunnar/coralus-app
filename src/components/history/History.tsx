@@ -2,6 +2,7 @@
 
 import useHistory, { HistoryType } from "@/hooks/useHistory";
 import { Component, ReactNode } from "react";
+import HistoryItem from "./HistoryItem";
 
 interface HistoryContentProps {
     history: HistoryType[];
@@ -9,11 +10,25 @@ interface HistoryContentProps {
 class HistoryContent extends Component<HistoryContentProps> {
     render(): ReactNode {
         const { history } = this.props;
-        console.log(history);
 
         return (
-            <div className="box-border hidden md:flex justify-center items-center h-full w-[40%]">
-                <label>Calculator History</label>
+            <div className="box-border hidden md:flex gap-2 flex-col justify-start items-center p-6 h-full w-[40%]
+            overflow-hidden overflow-y-auto">
+                <div className="flex gap-2 flex-col justify-start items-center h-fit w-full">
+                    {[...history, ...history, ...history, ...history].map(
+                        (item, index) => {
+                            const { expression, result } = item;
+
+                            return (
+                                <HistoryItem
+                                    key={index}
+                                    expression={expression}
+                                    result={result}
+                                />
+                            );
+                        }
+                    )}
+                </div>
             </div>
         );
     }
