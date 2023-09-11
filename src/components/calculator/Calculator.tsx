@@ -38,12 +38,15 @@ import CloseParenthesisIcon from "../icons/CloseParenthesisIcon";
 import OpenParenthesisIcon from "../icons/OpenParenthesisIcon";
 import CalculatorOpt from "./CalculatorOpt";
 import Mexp from "math-expression-evaluator";
+import useHistory, { HistoryType } from "@/hooks/useHistory";
 
 interface CalculatorProps {
     expression: IconType[];
     setExpression: (value: IconType[]) => void;
     expString: string;
     setExpString: (value: string) => void;
+    history: HistoryType[];
+    setHistory: (history: HistoryType[]) => void;
 }
 
 const calculatorOptions = [
@@ -116,6 +119,13 @@ class Calculator extends Component<CalculatorProps> {
         setExpString(newExpString);
     };
 
+    updateHistoryAndLocalStorage = (history: HistoryType[]) => {
+        const { setHistory } = this.props;
+
+        setHistory(history);
+        localStorage.setItem("coralusHistory", JSON.stringify(history));
+    }
+
     handleExpression(option: string, value: IconType | null) {
         const { expression, expString } = this.props;
 
@@ -138,6 +148,8 @@ class Calculator extends Component<CalculatorProps> {
                 );
             }
         } else if (option === "=") {
+            const { history } = this.props;
+
             const mexp = new Mexp();
             let evalStr: string = localExpString;
 
@@ -183,12 +195,13 @@ class Calculator extends Component<CalculatorProps> {
 
             try {
                 const result = `${mexp.eval(evalStr, [], {})}`;
-                const toSaveExpression = localExpString;
+                const toSaveExpression = { expression: localExpString, result: result };
                 const iconsArray = result
                     .split("")
                     .map((item) => KeyMappings[item].value) as IconType[];
 
                 this.updateExpressionAndString(iconsArray, result);
+                this.updateHistoryAndLocalStorage([...history, toSaveExpression]);
             } catch (error) {
                 this.updateExpressionAndString(
                     [
@@ -303,8 +316,8 @@ class Calculator extends Component<CalculatorProps> {
 }
 
 const CalculatorWrapper = () => {
-    const { expression, setExpression, expString, setExpString } =
-        useExpression();
+    const { expression, setExpression, expString, setExpString } = useExpression();
+    const { history, setHistory } = useHistory()
 
     return (
         <Calculator
@@ -312,6 +325,8 @@ const CalculatorWrapper = () => {
             expString={expString}
             setExpression={setExpression}
             setExpString={setExpString}
+            setHistory={setHistory}
+            history={history}
         />
     );
 };
