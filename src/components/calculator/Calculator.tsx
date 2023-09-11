@@ -76,12 +76,12 @@ const calculatorOptions = [
     { label: "Equals", opt: "=", icon: TbEqual, type: "utility__c" },
 ];
 
-const KeyMappings: Record<string, { option: string; value: IconType | null }> =
+export const KeyMappings: Record<string, { option: string; value: IconType | null }> =
     {
         "^": { option: "^", value: PiCaretUpBold },
         "!": { option: "!", value: BsExclamationLg },
-        "(": { option: "#", value: TbParentheses },
-        ")": { option: "#", value: TbParentheses },
+        "(": { option: "#", value: OpenParenthesisIcon },
+        ")": { option: "#", value: CloseParenthesisIcon },
         "%": { option: "%", value: TbPercentage },
         "/": { option: "/", value: TbDivide },
         "7": { option: "7", value: TbNumber7 },
@@ -98,6 +98,9 @@ const KeyMappings: Record<string, { option: string; value: IconType | null }> =
         "+": { option: "+", value: TbPlus },
         "0": { option: "0", value: TbNumber0 },
         ".": { option: ".", value: PiDotLight },
+        "&": { option: "&", value: TbSquareRoot },
+        "$": { option: "$", value: TbMathPi },
+        "=": { option: "=", value: TbEqual },
         Backspace: { option: "del", value: IoIosBackspace },
         Enter: { option: "=", value: TbEqual },
         Delete: { option: "AC", value: null },
