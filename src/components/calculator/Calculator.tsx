@@ -204,7 +204,7 @@ class Calculator extends Component<CalculatorProps> {
                     .map((item) => KeyMappings[item].value) as IconType[];
 
                 this.updateExpressionAndString(iconsArray, result);
-                this.updateHistoryAndLocalStorage([...history, toSaveExpression]);
+                this.updateHistoryAndLocalStorage([toSaveExpression, ...history]);
             } catch (error) {
                 this.updateExpressionAndString(
                     [
