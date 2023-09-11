@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;500;700&family=Teko:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;500;700&family=Teko:wght@700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,29 +6,43 @@
 
 :root {
     --colour-001: #740034;
-	--colour-002: #060c2b;
-	--colour-003: #721900;
-	--colour-004: #0000007e;
-	--colour-005: #1f2232;
-	--colour-006: #495074;
-	--colour-007: #343953;
-	--colour-008: #ac9a9f;
-	--colour-009: #0c0e14;
-	--colour-010: #323650;
-	--colour-011: #101119;
-	--colour-012: #2f334b;
-	--colour-013: #230010;
-	--colour-014: #8d0040;
-	--colour-015: #2e0015;
-	--colour-016: #ba0053;
-	--colour-017: #580028;
-	--colour-018: #124a00;
-	--colour-019: #071e00;
-	--colour-020: #1d7600;
-	--colour-021: #151721;
-	--colour-022: #535b85;
+    --colour-002: #060c2b;
+    --colour-003: #721900;
+    --colour-004: #0000007e;
+    --colour-005: #1f2232;
+    --colour-006: #495074;
+    --colour-007: #343953;
+    --colour-008: #ac9a9f;
+    --colour-009: #0c0e14;
+    --colour-010: #323650;
+    --colour-011: #101119;
+    --colour-012: #2f334b;
+    --colour-013: #230010;
+    --colour-014: #8d0040;
+    --colour-015: #2e0015;
+    --colour-016: #ba0053;
+    --colour-017: #580028;
+    --colour-018: #124a00;
+    --colour-019: #071e00;
+    --colour-020: #1d7600;
+    --colour-021: #151721;
+    --colour-022: #535b85;
+	--colour-023: #888888;
+	--colour-024: #555555;
 
-	--size: 84px;
-	--degrees: from -30deg at;
+    --size: 84px;
+    --degrees: from -30deg at;
 }
-  
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--colour-023);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--colour-024);
+}
