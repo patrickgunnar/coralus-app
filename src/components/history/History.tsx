@@ -15,7 +15,7 @@ class HistoryContent extends Component<HistoryContentProps> {
             <div className="box-border hidden md:flex gap-2 flex-col justify-start items-center p-6 h-full w-[40%]
             overflow-hidden overflow-y-auto">
                 <div className="flex gap-2 flex-col justify-start items-center h-fit w-full">
-                    {[...history, ...history, ...history, ...history].map(
+                    {history.map(
                         (item, index) => {
                             const { expression, result } = item;
 
