@@ -145,7 +145,11 @@ class Calculator extends Component<CalculatorProps> {
                 evalStr = evalStr.replace(/\$/g, `${Math.PI}`);
             }
 
-            if (evalStr.includes("&")) {
+            if (evalStr.includes("%")) {
+                evalStr = evalStr.replace(/\%/g, `/100*`);
+            }
+
+            if (evalStr.includes("&") || evalStr.includes("%")) {
                 // Define a regex pattern to split the string into valid parts
                 const regexPattern =
                     /([+\-*/%().])|([0-9]+\.[0-9]+)|([0-9]+)|(&[0-9]+)/g;
