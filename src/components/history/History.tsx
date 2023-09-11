@@ -33,7 +33,7 @@ class HistoryContent extends Component<HistoryContentProps> {
                                 />
                             );
                         })}
-                        {history.length > 0 && (
+                        {history.length === 0 && (
                             <label className="font-sans font-bold">
                                 No history found.
                             </label>
