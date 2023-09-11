@@ -3,6 +3,8 @@
 import { Component, ReactNode } from "react";
 import { KeyMappings } from "../calculator/Calculator";
 import { IconType } from "react-icons";
+import { TbEqual, TbSquareRoot } from "react-icons/tb";
+import { PiDotLight, PiCaretUpBold } from "react-icons/pi";
 
 interface HistoryItemProps {
     expression: string;
@@ -22,6 +24,18 @@ class HistoryItem extends Component<HistoryItemProps> {
 
             if (!Icon) return null;
 
+            if (Icon === PiDotLight) {
+                return <PiDotLight key={index} className="mt-2" />;
+            }
+
+            if (Icon === PiCaretUpBold) {
+                return <PiCaretUpBold key={index} className="mb-4" />;
+            }
+
+            if (Icon === TbSquareRoot) {
+                return <TbSquareRoot key={index} className="mb-1" />;
+            }
+
             return <Icon key={index} />;
         });
     }
@@ -34,13 +48,14 @@ class HistoryItem extends Component<HistoryItemProps> {
         const resultIcons = result.split("").map((item) => {
             return KeyMappings[item];
         });
-        console.log(expression)
+        console.log(expression);
 
         return (
-            <div className="box-border flex flex-wrap justify-center items-center p-2 h-fit w-full
-            text-white text-[1rem]">
-                <div className="flex">{this.returnArrayIcons(expressionIcons)}</div>
-                <div className="flex">{this.returnArrayIcons(resultIcons)}</div>
+            <div className="box-border flex flex-wrap gap-0 justify-end items-center h-fit w-full rounded-customA 
+            bg-customColor shadow-customH p-7 text-[1rem] md:text-[1.1rem] xl:text-[1.5rem] overflow-hidden text-white">
+                {this.returnArrayIcons(expressionIcons)}
+                <TbEqual />
+                {this.returnArrayIcons(resultIcons)}
             </div>
         );
     }
