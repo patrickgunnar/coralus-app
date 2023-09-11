@@ -19,7 +19,7 @@ class FooterContent extends Component<FooterProps> {
         return (
             <footer className="box-border flex gap-6 justify-between items-center p-1 h-full w-full text-[0.7rem] font-semibold uppercase">
                 <a
-                    className="cursor-pointer font-sans"
+                    className="relative truncate cursor-pointer font-sans w-[80%]"
                     href="https://patrickgunnar.vercel.app/"
                     target="_blank"
                 >
