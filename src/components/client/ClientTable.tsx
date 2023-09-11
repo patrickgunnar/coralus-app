@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
 import React, { Component, ReactNode } from "react";
 import Table from "./Table";
+import Loader from "../Loader";
 
 
 interface ClientTableState {
@@ -12,7 +13,7 @@ class ClientTable extends Component<{}, ClientTableState> {
     constructor(props: {}) {
         super(props);
         this.state = {
-            isClient: false
+            isClient: false,
         };
     }
 
@@ -21,10 +22,8 @@ class ClientTable extends Component<{}, ClientTableState> {
     }
 
     render(): ReactNode {
-        return (
-            this.state.isClient ? <Table /> : <div>Loading...</div>
-        );
+        return this.state.isClient ? <Table /> : <Loader />;
     }
 }
 
-export default ClientTable
+export default ClientTable;
