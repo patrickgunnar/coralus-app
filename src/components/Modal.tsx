@@ -27,8 +27,8 @@ class ModalContent extends Component<ModalContentProps> {
         return (
             <div className="box-border absolute flex justify-center items-center h-full w-full">
                 <div className="h-full w-full bg-[var(--colour-004)]" onClick={setIsOpened} />
-                <div className="box-border absolute flex flex-col justify-center items-center p-12 h-fit max-h-[85%] w-[50%] shadow-customH 
-                bg-customColor rounded-customA">
+                <div className="box-border absolute flex flex-col justify-center items-center p-12 h-fit max-h-[85%] w-[90%] 
+                lg:w-[50%] shadow-customH bg-customColor rounded-customA">
                     <div className="flex justify-end items-center mb-6 h-fit w-full">
                         <button className="flex justify-center items-center] text-gray-200 h-fit w-fit" onClick={setIsOpened}>
                             <AiFillCloseCircle size={30} />
