@@ -1,3 +1,4 @@
+import About from "@/components/About";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -16,8 +17,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className="box-border flex justify-center items-center h-full w-full">
-            <body className={`${inter.className} box-border flex justify-center items-center h-full w-full bg-customSize bg-customLinearGradient`}>
+            <body className={`${inter.className} box-border relative flex justify-center items-center h-full w-full bg-customSize bg-customLinearGradient`}>
 				{children}
+                <About />
 			</body>
         </html>
     );
